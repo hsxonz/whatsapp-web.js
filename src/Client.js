@@ -293,6 +293,13 @@ class Client extends EventEmitter {
             page = (await browser.pages())[0];
         }
 
+        try {
+            const ws = browser.wsEndpoint();
+            console.log(`Browser wsEndpoint: ${ws}`);
+        } catch (error) {
+            console.log("🚀 ~ Client ~ initialize ~ error:", error)
+        }
+
         if (this.options.proxyAuthentication !== undefined) {
             await page.authenticate(this.options.proxyAuthentication);
         }
